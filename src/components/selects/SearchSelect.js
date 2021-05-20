@@ -1,6 +1,6 @@
 function SearchSelect() {
   return (
-    <select className="dropdown">
+    <select>
       <option value="Freie Suche">Freie Suche</option>
       <option value="Partei">Partei</option>
       <option value="Redner">Redner</option>

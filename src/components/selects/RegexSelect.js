@@ -1,9 +1,9 @@
 function RegexSelect() {
   return (
     <select className="regexSelect">
-      <option value="AND">AND</option>
-      <option value="OR">OR</option>
-      <option value="AND NOT">AND NOT</option>
+      <option value="AND">und</option>
+      <option value="OR">oder</option>
+      <option value="AND NOT">und nicht</option>
     </select>
   );
 }

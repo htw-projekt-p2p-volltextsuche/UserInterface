@@ -3,73 +3,129 @@
 #86966B htw grün dunkler
 #F7FBEE milchweiß
 #9999CC lila */
-body {
-    background-color: #F7FBEE;
-    color: black;
-    padding: 40px;
+html{
     font-family: 'Trebuchet MS';
-    text-align: center;
-  }
-
-/* logo and search form */
-
+    font-size: 18px;
+    
+}
+body {
+  background-color: #f7fbee;
+  color: black;
+  padding: 40px;
+  text-align: center;
+}
 
 /* inputbutton styling*/
 
-input[type=button], input[type=submit], input[type=reset] {
-    background-color: #76B900;
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="text"] {
+    width: 20%;
+    padding: 4px;
+    margin: 2px;
     border: 3px solid #86966B;
     border-radius: 10px;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
+    background-color: #76B90B;
+    color: black;
     cursor: pointer;
-  }
-
-input:hover{
-    background-color: #86966B;
 }
+
+input:hover {
+  background-color: #86966b;
+}
+
+/* inputtext styling */
+input[type="text"] {
+  width: 20%;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #9999cc;
+  border-radius: 10px;
+  background-color: #f7fbee;
+  color: black;
+  cursor: pointer;
+}
+input:hover[type="text"] {
+  background-color: white;
+}
+
 /* select styling */
 select {
-    width: 10%;
-    padding: 16px 20px;
-    border: 3px solid #9999CC;
-    border-radius: 10px;
-    background-color: #ddddf3;
-  }
-
-select:hover {
-    background-color: #9999CC;
+  width: 20%;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #9999cc;
+  border-radius: 10px;
+  background-color: #ddddf3;
+  cursor: pointer;
 }
 
 .regexSelect{
-    padding: 8px 10px;;
-    width: auto;
+    width: 8%;
+}
+select:hover {
+  background-color: #9999cc;
 }
 
+/* searchform styling*/
+
+.form {
+  text-align: left;
+  margin: 2%;
+}
+
+/* banner styling*/
+.banner {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  background-color: white;
+}
+
+.htwlogo {
+  height: 100px;
+  width: auto;
+}
+
+.projectName {
+  padding: 8px;
+  vertical-align: middle;
+}
 /* resulttable styling */
 #results {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #results th {
-    border: 3px solid #86966B;
-    padding: 8px;
-  }
-  #results td{
-    border: 3px solid #9999CC;
-    padding: 8px;
-  }
-  #results tr:nth-child(even){background-color: #f2f2f2;}
-  #results tr:nth-child(odd){background-color: #ddddf3;}
-  #results tr:hover {background-color: #9999CC;}
-  
-  #results th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #76B900;
-    color: black;
-  }
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#results th {
+  border: 3px solid #86966b;
+  padding: 8px;
+}
+#results td {
+  border: 3px solid #9999cc;
+  padding: 8px;
+}
+#results tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#results tr:nth-child(odd) {
+  background-color: #ddddf3;
+}
+#results tr:hover {
+  background-color: #9999cc;
+}
+
+#results th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #76b900;
+  color: black;
+}
+
+
+/* REMOVE LATER JUST PLACEHOLER */
+.tabulator{
+    margin-left: 8.2%;
+}
