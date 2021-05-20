@@ -1,26 +1,22 @@
 export const COLUMNS = [
   {
-    Header: "id",
-    accessor: "docId",
-  },
-  {
-    Header: "title",
+    Header: "Titel",
     accessor: "title",
   },
   {
-    Header: "speaker",
+    Header: "Redner",
     accessor: "speaker",
   },
   {
-    Header: "affiliation",
+    Header: "Partei",
     accessor: "affiliation",
   },
   {
-    Header: "date",
+    Header: "Datum",
     accessor: "date",
   },
   {
-    Header: "snippet",
+    Header: "Textausschnitt",
     accessor: "text",
-  }
+  },
 ];

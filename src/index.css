@@ -1,0 +1,75 @@
+/*farbpalette 
+#76B90B htw grün
+#86966B htw grün dunkler
+#F7FBEE milchweiß
+#9999CC lila */
+body {
+    background-color: #F7FBEE;
+    color: black;
+    padding: 40px;
+    font-family: 'Trebuchet MS';
+    text-align: center;
+  }
+
+/* logo and search form */
+
+
+/* inputbutton styling*/
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #76B900;
+    border: 3px solid #86966B;
+    border-radius: 10px;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+input:hover{
+    background-color: #86966B;
+}
+/* select styling */
+select {
+    width: 10%;
+    padding: 16px 20px;
+    border: 3px solid #9999CC;
+    border-radius: 10px;
+    background-color: #ddddf3;
+  }
+
+select:hover {
+    background-color: #9999CC;
+}
+
+.regexSelect{
+    padding: 8px 10px;;
+    width: auto;
+}
+
+/* resulttable styling */
+#results {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #results th {
+    border: 3px solid #86966B;
+    padding: 8px;
+  }
+  #results td{
+    border: 3px solid #9999CC;
+    padding: 8px;
+  }
+  #results tr:nth-child(even){background-color: #f2f2f2;}
+  #results tr:nth-child(odd){background-color: #ddddf3;}
+  #results tr:hover {background-color: #9999CC;}
+  
+  #results th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #76B900;
+    color: black;
+  }
