@@ -1,6 +1,6 @@
 export const COLUMNS = [
   {
-    Header: "Titel",
+    Header: "Tagesordnungspunkt",
     accessor: "title",
   },
   {
@@ -8,7 +8,7 @@ export const COLUMNS = [
     accessor: "speaker",
   },
   {
-    Header: "Partei",
+    Header: "Zugehörigkeit",
     accessor: "affiliation",
   },
   {
