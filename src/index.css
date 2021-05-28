@@ -92,6 +92,15 @@ select:hover {
   padding: 8px;
   vertical-align: middle;
 }
+
+.listElement{
+  background-color: white;
+  display: grid;
+  grid-template-rows: 10%, 80%;
+}
+
+
+
 /* resulttable styling */
 #results {
   border-collapse: collapse;

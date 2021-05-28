@@ -6,7 +6,7 @@ function App() {
     <div>
       <HeaderBanner />
       <SearchForm />
-      <ResultTable />
+      <ListElement />
     </div>
   );
 }
