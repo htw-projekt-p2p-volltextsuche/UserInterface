@@ -1,4 +1,4 @@
-import ResultTable from "./components/ResultTable";
+import ListElement from "./components/ListElement";
 import SearchForm from "./components/SearchForm";
 import HeaderBanner from "./components/HeaderBanner";
 function App() {
@@ -6,6 +6,10 @@ function App() {
     <div>
       <HeaderBanner />
       <SearchForm />
+      <ListElement />
+      <ListElement />
+      <ListElement />
+      <ListElement />
       <ListElement />
     </div>
   );
