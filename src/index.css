@@ -113,6 +113,7 @@ select:hover {
 
 .listElement:hover {
   background-color: #76b90b;
+  cursor: pointer;
 }
 
 .listElement > div {
@@ -131,34 +132,3 @@ select:hover {
   text-align: left;
 }
 
-/* resulttable styling */
-#results {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#results th {
-  border: 3px solid #86966b;
-  padding: 8px;
-}
-#results td {
-  border: 3px solid #9999cc;
-  padding: 8px;
-}
-#results tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-#results tr:nth-child(odd) {
-  background-color: #ddddf3;
-}
-#results tr:hover {
-  background-color: #9999cc;
-}
-
-#results th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #76b900;
-  color: black;
-}
