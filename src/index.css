@@ -142,3 +142,31 @@ select:hover {
   text-align: left;
 }
 
+/* pagination styling*/
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a {
+  border-radius: 5px;
+}
+
+.pagination a.active {
+  border-radius: 5px;
+}
+.pagination a {
+  transition: background-color .3s;
+}
+.pagination a {
+  border: 1px solid #ddd; /* Gray */
+}
