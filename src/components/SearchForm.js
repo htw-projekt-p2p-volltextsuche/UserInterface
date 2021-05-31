@@ -1,5 +1,4 @@
-import PartySelect from "./selects/PartySelect";
-import RegexSelect from "./selects/RegexSelect";
+import AddSearchButton from "./AddSearchButton";
 import SearchSelect from "./selects/SearchSelect";
 import SubmitButton from "./SubmitButton";
 
@@ -10,7 +9,7 @@ function SearchForm(params) {
         <SearchSelect />
         <input type="text" />
         <br/>
-        <RegexSelect />
+        <AddSearchButton/>
         <SubmitButton />
       </form>
     </div>

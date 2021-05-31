@@ -81,6 +81,16 @@ select:hover {
   margin: 10px;
 }
 
+.addSearchButton{
+  height: 40px;
+  width: 40px;
+  background-color: #F7FBEE;
+  font-size: 20px;
+  border-style: solid 10px;
+  border-radius: 25%;
+  border-color: 4px #86966b;
+}
+
 /* banner styling*/
 .banner {
   display: flex;
