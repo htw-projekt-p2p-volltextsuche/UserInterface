@@ -2,11 +2,11 @@
 #76B90B htw grün
 #86966B htw grün dunkler
 #F7FBEE milchweiß
-#9999CC lila */
-html{
-    font-family: 'Trebuchet MS';
-    font-size: 18px;
-    
+#ddddf3 lila
+#9999CC lila dunkel*/
+html {
+  font-family: "Trebuchet MS";
+  font-size: 18px;
 }
 body {
   background-color: #f7fbee;
@@ -15,29 +15,31 @@ body {
   text-align: center;
 }
 
-/* inputbutton styling*/
+/* input styling*/
+
+input {
+  width: 80%;
+}
 
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
 input[type="text"] {
-    width: 20%;
-    padding: 4px;
-    margin: 2px;
-    border: 3px solid #86966B;
-    border-radius: 10px;
-    background-color: #76B90B;
-    color: black;
-    cursor: pointer;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #86966b;
+  border-radius: 10px;
+  background-color: #76b90b;
+  color: black;
+  cursor: pointer;
 }
 
 input:hover {
   background-color: #86966b;
 }
 
-/* inputtext styling */
+/* input text styling */
 input[type="text"] {
-  width: 20%;
   padding: 4px;
   margin: 2px;
   border: 3px solid #9999cc;
@@ -52,7 +54,7 @@ input:hover[type="text"] {
 
 /* select styling */
 select {
-  width: 20%;
+  width: 80%;
   padding: 4px;
   margin: 2px;
   border: 3px solid #9999cc;
@@ -61,9 +63,6 @@ select {
   cursor: pointer;
 }
 
-.regexSelect{
-    width: 8%;
-}
 select:hover {
   background-color: #9999cc;
 }
@@ -71,8 +70,15 @@ select:hover {
 /* searchform styling*/
 
 .form {
-  text-align: left;
-  margin: 2%;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  align-items: center;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 10px;
+  border-color: #86966b;
+
+  margin: 10px;
 }
 
 /* banner styling*/
@@ -93,32 +99,35 @@ select:hover {
   vertical-align: middle;
 }
 
-
 /* resultlist styling*/
-.listElement{
+.listElement {
   display: grid;
   background-color: white;
   grid-template-columns: repeat(1, 1fr);
   margin-bottom: 10px;
   border-style: solid;
-  border-width: 3px;
-  border-color: #86966B;
+  border-width: 4px;
+  border-radius: 10px;
+  border-color: #86966b;
+}
+
+.listElement:hover {
+  background-color: #76b90b;
 }
 
 .listElement > div {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 5px;
+  display: flex;
+  margin: 5px;
+  padding: 10px;
   text-align: left;
 }
 
-.elementTitel{
+.elementTitel {
   font-size: 20px;
   text-align: left;
 }
 
-.elementExtra{
+.elementExtra {
   text-align: left;
 }
 
@@ -152,11 +161,4 @@ select:hover {
   text-align: left;
   background-color: #76b900;
   color: black;
-}
-
-
-
-/* REMOVE LATER JUST PLACEHOLER */
-.tabulator{
-    margin-left: 8.2%;
 }
