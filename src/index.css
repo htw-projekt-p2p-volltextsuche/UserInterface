@@ -72,21 +72,18 @@ select:hover {
 .form {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  align-items: center;
+  text-align: left;
   border-style: solid;
   border-width: 4px;
   border-radius: 10px;
   border-color: #86966b;
-
   margin: 10px;
 }
 
 .addSearchButton{
-  height: 40px;
-  width: 40px;
   background-color: #F7FBEE;
   font-size: 20px;
-  border-style: solid 10px;
+  border-style: solid;
   border-radius: 25%;
   border-color: 4px #86966b;
 }
@@ -153,6 +150,14 @@ select:hover {
   padding: 8px 16px;
   text-decoration: none;
 }
+
+pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
 .pagination a.active {
   background-color: #4CAF50;
   color: white;
