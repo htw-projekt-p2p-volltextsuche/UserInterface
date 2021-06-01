@@ -1,0 +1,19 @@
+{
+  "query": {
+    "type": "affiliation",
+    "terms": "someone",
+    "maxresults" : 12,
+    "additionalquery": [
+      {
+        "connector": "and",
+        "type": "fulltext",
+        "terms": "blahblah"
+      },
+      {
+        "connector": "and",
+        "type": "fulltext",
+        "terms": "blahblah"
+      }
+    ]
+  }
+}
