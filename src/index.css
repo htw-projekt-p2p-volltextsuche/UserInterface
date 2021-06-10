@@ -71,7 +71,7 @@ select:hover {
 
 .form {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: 100% ;
   text-align: left;
   border-style: solid;
   border-width: 4px;
@@ -80,14 +80,41 @@ select:hover {
   margin: 10px;
 }
 
-.addSearchButton{
-  background-color: #F7FBEE;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 25%;
-  border-color: 4px #86966b;
+.freieSucheLabel{
+  width: 80%;
+    padding: 4px;
+    margin: 2px;
+    border: 3px solid #9999cc;
+    border-radius: 10px;
+    background-color: #ddddf3;
 }
 
+.formHeader{
+  display: grid;
+  grid-template-columns: 91% 3%;
+}
+
+.formMainRow{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+.formRow{
+  display: grid;
+  grid-template-columns: 30% 30% 30% ;
+}
+
+#addSearchButton{
+  font-family: "Trebuchet MS";
+  font-size: 18px;
+  font-weight: bolder;
+  border-style: solid;
+  border-radius: 40%;
+  border: 3px solid #86966b;
+}
+
+#formSubmit{
+  width: 24.6%;
+}
 /* banner styling*/
 .banner {
   display: flex;

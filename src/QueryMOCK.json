@@ -1,17 +1,22 @@
 {
   "query": {
-    "type": "affiliation",
+    "type": "fulltext",
     "terms": "someone",
     "maxresults" : 12,
     "additionalquery": [
       {
         "connector": "and",
         "type": "fulltext",
+        "terms": "blah blah"
+      },
+      {
+        "connector": "or",
+        "type": "speaker",
         "terms": "blahblah"
       },
       {
         "connector": "and",
-        "type": "fulltext",
+        "type": "affiliation",
         "terms": "blahblah"
       }
     ]

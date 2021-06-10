@@ -1,27 +1,30 @@
-import AddSearchButton from "./AddSearchButton";
-import SearchSelect from "./selects/SearchSelect";
-import SubmitButton from "./SubmitButton";
-import RegexSelect from "./selects/RegexSelect";
+import FormRow from "./FormRow";
+import { useState } from "react";
+import FormMainRow from "./FormMainRow";
+
 function SearchForm(params) {
+  const [inputList, setInputList] = useState([]);
+
   return (
     <div className="formContainer">
       <form className="form">
-        <SearchSelect />
-        <input type="text" />
-        <br/>
-        <RegexSelect/>
-        <SearchSelect />
-        <input type="text" />
-
-        <RegexSelect/>
-        <SearchSelect />
-        <input type="text" />
-
-        <AddSearchButton/>
-        <SubmitButton />
+        <div className="formHeader">
+          <FormMainRow />
+          <input
+            type="button"
+            id="addSearchButton"
+            value="+"
+            onClick={addFormRow}
+          ></input>
+        </div>
+        {inputList}
+        <input type="submit" id="formSubmit"value="Suche"></input>
       </form>
     </div>
   );
-}
 
+  function addFormRow(params) {
+    setInputList(inputList.concat(<FormRow />));
+  }
+}
 export default SearchForm;
