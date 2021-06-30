@@ -1,23 +1,23 @@
 {
-  "query": {
-    "type": "fulltext",
-    "terms": "someone",
-    "maxresults" : 12,
-    "additionalquery": [
+  "search": {
+    "max_results": 25,
+    "query": {
+      "terms": "Corona Regeln Juni",
+      "additions": [
+        {
+          "connector": "or",
+          "terms": "Covid Rules July"
+        }
+      ]
+    },
+    "filter": [
       {
-        "connector": "and",
-        "type": "fulltext",
-        "terms": "blah blah"
+        "criteria": "affiliation",
+        "value": "CDU"
       },
       {
-        "connector": "or",
-        "type": "speaker",
-        "terms": "blahblah"
-      },
-      {
-        "connector": "and",
-        "type": "affiliation",
-        "terms": "blahblah"
+        "criteria": "affiliation",
+        "value": "SPD"
       }
     ]
   }

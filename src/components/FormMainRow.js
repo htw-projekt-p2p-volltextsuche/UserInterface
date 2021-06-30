@@ -1,10 +1,7 @@
-import RegexSelect from "./RegexSelect";
-import SearchSelect from "./SearchSelect";
-
 function FormMainRow(params) {
   return (
     <div className="formMainRow">
-      <label className="freieSucheLabel">Freie Suche</label>
+      <label className="freieSucheLabel">{params.text}</label>
       <br />
       <input className="mainTextInput" type="text"></input>
     </div>

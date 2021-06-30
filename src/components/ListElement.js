@@ -1,9 +1,9 @@
 function ListElement(params) {
     return(
         <div className="listElement">
-            <div className="elementTitel">Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Multidimensionalen Integrierten Stabilisierungsmission der Vereinten Nationen in Mali (MINUSMA) auf Grundlage der Resolutionen 2100 (2013){params.title}</div>
-            <div className="elementExtra">SomePerson, SomeAffiliation, 12.04.1988{params.speaker}{params.affiliation}{params.date}</div>
-            <div className="textSample">...vor allem der Aufklärung, und mit bis zu 1 000 Soldatinnen und Soldaten. Die Bundeswehr erfüllt ihre Aufgaben bravourös. Sie agiert in einem sehr fordernden Umfeld. Im Sommer haben wir zwei unserer besten Tiger-Piloten bei einem tragischen Hubschrauberunglück...</div>
+            <div className="elementTitel">{params.title}</div>
+            <div className="elementExtra">{params.speaker}{params.affiliation}{params.date}</div>
+            <div className="textSample">{params.sample}</div>
         </div>
     );
 }

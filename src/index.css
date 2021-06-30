@@ -54,7 +54,11 @@ input:hover[type="text"] {
 
 /* select styling */
 select {
-  width: 80%;
+  width: 30%;
+  font-family: "Trebuchet MS";
+  font-size: 14px;
+  text-align: center;
+  font-weight: 100;
   padding: 4px;
   margin: 2px;
   border: 3px solid #9999cc;
@@ -89,6 +93,18 @@ select:hover {
     background-color: #ddddf3;
 }
 
+.extraSucheLabel{
+  width: 20%;
+  font-family: "Trebuchet MS";
+  font-size: 14px;
+  text-align: center;
+  font-weight: 100;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #9999cc;
+  border-radius: 10px;
+  background-color: #ddddf3;
+}
 .formHeader{
   display: grid;
   grid-template-columns: 91% 3%;
