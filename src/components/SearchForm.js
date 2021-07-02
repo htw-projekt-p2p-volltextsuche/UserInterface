@@ -84,26 +84,7 @@ function SearchForm(params) {
   );
 
   function mockQueryResult() {
-    let data = {
-      total: 3,
-      results: [
-        {
-          docId: "5b1b4727-0bb6-49d6-b8f2-401561fc8ebc",
-          score: 0.6782134,
-          positions: [76, 123, 612],
-        },
-        {
-          docId: "7912d5ce-9e53-4317-82ac-c309e1d7674c",
-          score: 0.3582134,
-          positions: [36, 122],
-        },
-        {
-          docId: "f74a18bc-cdec-4f7c-9b7d-0b0ec2ec3683",
-          score: 0.1282134,
-          positions: [50, 143],
-        },
-      ],
-    };
+    let data = {"total":1,"results":[{"doc_id":"2cd6a8db-fdcd-4f56-9356-5e937540c94b","score":1.870930349021494}]};
     buildResultList(data);
   }
 
@@ -115,7 +96,7 @@ function SearchForm(params) {
     let metaData = {};
     while (i < data.results.length) {
       //metaData = getMetaData(data.results[i].docId);
-      entries.push(addListElement(i, data.results[i].docId, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
+      entries.push(addListElement(i, data.results[i].doc_id, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
       i++;
     }
     setResultListEntries(entries);
@@ -194,14 +175,10 @@ function SearchForm(params) {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
-      },
+      }
     })
-    .then((responseJson) => {
-      buildResultList(JSON.parse(responseJson));
-    })
-    .catch((error) => {
-      console.log(error)
-    });
+    .then(responseJson => buildResultList(responseJson))
+    .catch((error) => console.log(error));
     // .then((data) => {
     //     buildResultList(JSON.parse(data));
     //   })
