@@ -89,6 +89,8 @@ function SearchForm(params) {
   }
 
   function buildResultList(data) {
+    var string = new TextDecoder().decode(data);
+    data = JSON.parse(string);
     console.log(data);
     console.log(data.results);
     let i = 0;
@@ -177,7 +179,8 @@ function SearchForm(params) {
         "Accept": "application/json"
       }
     })
-    .then(responseJson => buildResultList(responseJson))
+    .then(responseJson => responseJson.body.getReader().read())
+    .then(({_, value})=> buildResultList(value))
     .catch((error) => console.log(error));
     // .then((data) => {
     //     buildResultList(JSON.parse(data));
