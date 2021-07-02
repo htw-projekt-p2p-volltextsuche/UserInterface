@@ -238,9 +238,9 @@ function SearchForm(params) {
             className="regexSelect"
             {...register("fulltextOperator" + index)}
           >
-            <option value="AND">und</option>
-            <option value="OR">oder</option>
-            <option value="AND NOT">und nicht</option>
+            <option value="and">und</option>
+            <option value="or">oder</option>
+            <option value="and_not">und nicht</option>
           </select>
           <br />
           <input type="text" {...register("fulltext" + index)} />
