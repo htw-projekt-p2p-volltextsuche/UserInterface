@@ -188,7 +188,7 @@ function SearchForm(params) {
   }
 
   function sendQuery(json) {
-    fetch("http://localhost:8421/api/searches", {
+    fetch(window.location.protocol + "//" + window.location.host + ":8421/api/searches", {
       method: "POST",
       body: json,
       headers: {
@@ -196,7 +196,7 @@ function SearchForm(params) {
       },
     })
     .then((responseJson) => {
-      buildResultList(JSON.parse(responseJson));
+      buildResultList(responseJson);
     })
     .catch((error) => {
       console.log(error)
