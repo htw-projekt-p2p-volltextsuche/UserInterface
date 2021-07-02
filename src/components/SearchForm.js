@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import ResultList from "./ResultList";
 function SearchForm(params) {
   const { register, handleSubmit, getValues } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(buildJSON(data));
+    //mockQueryResult();
     sendQuery(buildJSON(data));
   };
+  const [resultListEntries, setResultListEntries] = useState([]);
 
   const [inputFulltextList, setInputFulltextList] = useState([]);
   const [fulltextRowCount, setFulltextRowCount] = useState(0);
@@ -79,8 +79,66 @@ function SearchForm(params) {
         {inputAffiliationList}
         <input type="submit"></input>
       </form>
+      {resultListEntries}
     </div>
   );
+
+  function mockQueryResult() {
+    let data = {
+      total: 3,
+      results: [
+        {
+          docId: "5b1b4727-0bb6-49d6-b8f2-401561fc8ebc",
+          score: 0.6782134,
+          positions: [76, 123, 612],
+        },
+        {
+          docId: "7912d5ce-9e53-4317-82ac-c309e1d7674c",
+          score: 0.3582134,
+          positions: [36, 122],
+        },
+        {
+          docId: "f74a18bc-cdec-4f7c-9b7d-0b0ec2ec3683",
+          score: 0.1282134,
+          positions: [50, 143],
+        },
+      ],
+    };
+    buildResultList(data);
+  }
+
+  function buildResultList(data) {
+    console.log(data);
+    console.log(data.results);
+    let i = 0;
+    let entries = [];
+    let metaData = {};
+    while (i < data.results.length) {
+      metaData = getMetaData(data.results[i].docId);
+      entries.push(addListElement(i, metaData.title, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
+      i++;
+    }
+    setResultListEntries(entries);
+    return resultListEntries;
+  }
+
+  function getMetaData(uuid){
+    const url = 'mongodb://localhost:8430/';
+  }
+
+  function addListElement(i, title, speaker, affiliation, date, sample) {
+    return (
+      <div key={i} className="listElement">
+        <div className="elementTitel">{title}</div>
+        <div className="elementExtra">
+          {speaker}
+          {affiliation}
+          {date}
+        </div>
+        <div className="textSample">{sample}</div>
+      </div>
+    );
+  }
 
   function buildJSON() {
     let additions = [];
@@ -137,9 +195,18 @@ function SearchForm(params) {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
-      .then(<ResultList data/>
-      );
+    .then((responseJson) => {
+      buildResultList(JSON.parse(responseJson));
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+    // .then((data) => {
+    //     buildResultList(JSON.parse(data));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   function addFulltextFormRow(params) {
