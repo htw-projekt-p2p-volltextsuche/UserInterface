@@ -114,8 +114,8 @@ function SearchForm(params) {
     let entries = [];
     let metaData = {};
     while (i < data.results.length) {
-      metaData = getMetaData(data.results[i].docId);
-      entries.push(addListElement(i, metaData.title, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
+      //metaData = getMetaData(data.results[i].docId);
+      entries.push(addListElement(i, data.results[i].docId, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
       i++;
     }
     setResultListEntries(entries);
@@ -193,10 +193,11 @@ function SearchForm(params) {
       body: json,
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/json"
       },
     })
     .then((responseJson) => {
-      buildResultList(responseJson);
+      buildResultList(JSON.parse(responseJson));
     })
     .catch((error) => {
       console.log(error)
