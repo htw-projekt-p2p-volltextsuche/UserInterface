@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 function SearchForm(params) {
-  const { register, handleSubmit, getValues } = useForm();
+  const { register, unregister, handleSubmit, getValues } = useForm();
 
   const onSubmit = (data) => {
+    //console.log(buildJSON(data));
     //mockQueryResult();
     sendQuery(buildJSON(data));
   };
@@ -21,76 +22,71 @@ function SearchForm(params) {
   return (
     <div className="formContainer">
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="formHeader">
-          <div className="formMainRow">
-            <label className="freieSucheLabel">Freie Suche</label>
-            <br />
-            <input
-              className="mainTextInput"
-              type="text"
-              {...register("mainTerm")}
-            ></input>
-          </div>
+        <div className="formMainRow">
+          <label className="freieSucheLabel">Freie Suche</label>
+          <br />
           <input
-            type="button"
-            id="addSearchButton"
-            value="+"
-            onClick={addFulltextFormRow}
+            className="mainTextInput"
+            type="text"
+            {...register("mainTerm")}
           ></input>
+          <input type="button" value="+" onClick={addFulltextFormRow}></input>
         </div>
+
         {inputFulltextList}
         <br />
-        <div className="formHeader">
-          <div className="formMainRow">
-            <label className="freieSucheLabel">Redner</label>
-            <br />
-            <input
-              className="mainTextInput"
-              type="text"
-              {...register("speaker0")}
-            ></input>
-          </div>
+
+        <div className="formMainRow">
+          <label className="freieSucheLabel">Redner</label>
+          <br />
           <input
-            type="button"
-            id="addSearchButton"
-            value="+"
-            onClick={addSpeakerFormRow}
+            className="mainTextInput"
+            type="text"
+            {...register("speaker0")}
           ></input>
+          <input type="button" value="+" onClick={addSpeakerFormRow}></input>
         </div>
+
         {inputSpeakerList}
         <br />
-        <div className="formHeader">
-          <div className="formMainRow">
-            <label className="freieSucheLabel">Partei</label>
-            <br />
-            <input
-              className="mainTextInput"
-              type="text"
-              {...register("affiliation0")}
-            ></input>
-          </div>
+
+        <div className="formMainRow">
+          <label className="freieSucheLabel">Partei</label>
+          <br />
+          <input
+            className="mainTextInput"
+            type="text"
+            {...register("affiliation0")}
+          ></input>
           <input
             type="button"
-            id="addSearchButton"
             value="+"
             onClick={addAffiliationFormRow}
           ></input>
         </div>
         {inputAffiliationList}
-        <input type="submit"></input>
+        <input id="formSubmit" type="submit"></input>
       </form>
       {resultListEntries}
     </div>
   );
 
   function mockQueryResult() {
-    let data = {"total":1,"results":[{"doc_id":"2cd6a8db-fdcd-4f56-9356-5e937540c94b","score":1.870930349021494}]};
+    let data = {
+      total: 1,
+      results: [
+        {
+          doc_id: "2cd6a8db-fdcd-4f56-9356-5e937540c94b",
+          score: 1.870930349021494,
+        },
+      ],
+    };
     buildResultList(data);
   }
 
   function buildResultList(data) {
-    var string = new TextDecoder().decode(data);
-    data = JSON.parse(string);
+    //var string = new TextDecoder().decode(data);
+    //data = JSON.parse(string);
     console.log(data);
     console.log(data.results);
     let i = 0;
@@ -98,15 +94,28 @@ function SearchForm(params) {
     let metaData = {};
     while (i < data.results.length) {
       //metaData = getMetaData(data.results[i].docId);
-      entries.push(addListElement(i, data.results[i].doc_id, metaData.speaker, metaData.affiliation, metaData.date, metaData.sample));
+      entries.push(
+        addListElement(
+          i,
+          data.results[i].doc_id,
+          metaData.speaker,
+          metaData.affiliation,
+          metaData.date,
+          metaData.sample
+        )
+      );
       i++;
     }
     setResultListEntries(entries);
     return resultListEntries;
   }
 
-  function getMetaData(uuid){
-    const url = 'mongodb://localhost:8430/';
+  function getMetaData(uuid) {
+    const username = process.env.MONGO_INITDB_ROOT_USERNAME;
+    const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
+    const url = process.env.MCLI_OPS_MANAGER_URL;
+
+    var MongoClient = require("mongodb").MongoClient;
   }
 
   function addListElement(i, title, speaker, affiliation, date, sample) {
@@ -144,7 +153,9 @@ function SearchForm(params) {
         criteria: "speaker",
         value: getValues(speakerKey),
       };
-      filter.push(oneFilter);
+      if (oneFilter.value !== "") {
+        filter.push(oneFilter);
+      }
     }
 
     for (let index = 0; index < affiliationRowCount; index++) {
@@ -153,9 +164,11 @@ function SearchForm(params) {
         criteria: "affiliation",
         value: getValues(affiliationKey),
       };
-      filter.push(oneFilter);
+      if (oneFilter.value !== "") {
+        filter.push(oneFilter);
+      }
     }
-
+    
     let terms = getValues("mainTerm");
     let query = {
       search: {
@@ -167,21 +180,27 @@ function SearchForm(params) {
         filter: filter,
       },
     };
-    return JSON.stringify(query);
+    return JSON.stringify(query)
   }
 
   function sendQuery(json) {
-    fetch(window.location.protocol + "//" + window.location.host + ":8421/api/searches", {
-      method: "POST",
-      body: json,
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+    fetch(
+      window.location.protocol +
+        "//" +
+        window.location.host +
+        ":8421/api/searches",
+      {
+        method: "POST",
+        body: json,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       }
-    })
-    .then(responseJson => responseJson.body.getReader().read())
-    .then(({_, value})=> buildResultList(value))
-    .catch((error) => console.log(error));
+    )
+      .then((responseJson) => responseJson.body.getReader().read())
+      .then(({ _, value }) => buildResultList(value))
+      .catch((error) => console.log(error));
     // .then((data) => {
     //     buildResultList(JSON.parse(data));
     //   })
@@ -191,10 +210,9 @@ function SearchForm(params) {
   }
 
   function addFulltextFormRow(params) {
-    setInputFulltextList(
-      inputFulltextList.concat(addFormRow(fulltextRowCount, "fulltext"))
-    );
-    setFulltextRowCount(fulltextRowCount + 1);
+    setInputFulltextList((prevInputFulltextList) => {return prevInputFulltextList.concat(addFormRow(fulltextRowCount, "fulltext"))});
+    //inputFulltextList.concat(addFormRow(fulltextRowCount, "fulltext")
+    setFulltextRowCount((prevFullTextRowCount) => {return prevFullTextRowCount+1});
   }
   function addSpeakerFormRow(params) {
     setinputSpeakerList(
@@ -211,6 +229,17 @@ function SearchForm(params) {
     setAffiliationRowCount(affiliationRowCount + 1);
   }
 
+  function removeFulltextFormRow(index) {
+    setInputFulltextList(prevInputFulltextList => {
+      console.log(prevInputFulltextList);
+      console.log(prevInputFulltextList[index].key);
+      console.log(index);
+      return prevInputFulltextList.filter(formRow => 
+        console.log("hit: "+formRow.key !== index))
+    });
+    setFulltextRowCount(prevFullTextRowCount => {return prevFullTextRowCount-1})
+  }
+
   function addFormRow(index, type) {
     if (type === "fulltext") {
       return (
@@ -225,6 +254,12 @@ function SearchForm(params) {
           </select>
           <br />
           <input type="text" {...register("fulltext" + index)} />
+          <input
+            type="button"
+            value="-"
+            onClick={() =>{removeFulltextFormRow(index); unregister("fulltext"+index); unregister("fulltextOperator"+index)}
+            }
+          />
         </div>
       );
     } else if (type === "speaker") {
@@ -233,6 +268,11 @@ function SearchForm(params) {
           <label className="extraSucheLabel">oder</label>
           <br />
           <input type="text" {...register("speaker" + index)} />
+          <input
+            type="button"
+            value="-"
+            onClick={() => unregister("speaker" + index)}
+          />
         </div>
       );
     } else if (type === "affiliation") {
@@ -241,6 +281,11 @@ function SearchForm(params) {
           <label className="extraSucheLabel">oder</label>
           <br />
           <input type="text" {...register("affiliation" + index)} />
+          <input
+            type="button"
+            value="-"
+            onClick={() => unregister("affiliation" + index)}
+          />
         </div>
       );
     }

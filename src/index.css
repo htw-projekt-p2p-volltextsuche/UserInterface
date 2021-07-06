@@ -105,18 +105,14 @@ select:hover {
   border-radius: 10px;
   background-color: #ddddf3;
 }
-.formHeader{
-  display: grid;
-  grid-template-columns: 91% 3%;
-}
 
 .formMainRow{
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 30% 30% 30% 10%;
 }
 .formRow{
   display: grid;
-  grid-template-columns: 30% 30% 30% ;
+  grid-template-columns: 30% 30% 30% 10%;
 }
 
 #addSearchButton{
@@ -129,7 +125,7 @@ select:hover {
 }
 
 #formSubmit{
-  width: 24.6%;
+  width: 25%;
 }
 /* banner styling*/
 .banner {
