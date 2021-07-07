@@ -115,13 +115,8 @@ select:hover {
   grid-template-columns: 30% 30% 30% 10%;
 }
 
-#addSearchButton{
-  font-family: "Trebuchet MS";
+.formEditButton{
   font-size: 18px;
-  font-weight: bolder;
-  border-style: solid;
-  border-radius: 40%;
-  border: 3px solid #86966b;
 }
 
 #formSubmit{
