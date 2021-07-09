@@ -121,6 +121,7 @@ select:hover {
 
 #formSubmit{
   width: 25%;
+  font-size: 18px;
 }
 /* banner styling*/
 .banner {

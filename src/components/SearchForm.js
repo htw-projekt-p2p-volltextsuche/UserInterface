@@ -105,9 +105,23 @@ function SearchForm(params) {
   function getMetaData(uuid) {
     const username = process.env.MONGO_INITDB_ROOT_USERNAME;
     const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
-    const url = process.env.MCLI_OPS_MANAGER_URL;
+    const url = process.env.MongoConnectionString;
 
-    let MongoClient = require("mongodb").MongoClient;
+    var MongoClient = require("mongodb").MongoClient;
+    MongoClient.connect(url, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("db");
+      var query = { uuid: uuid };
+      //TODO add correct COLLECTION_NAME
+      dbo
+        .collection("COLLECTION_NAME")
+        .find(query)
+        .toArray(function (err, result) {
+          if (err) throw err;
+          console.log(result);
+          db.close();
+        });
+    });
   }
 
   function addListElement(i, title, speaker, affiliation, date, sample) {
@@ -302,7 +316,6 @@ function SearchForm(params) {
   }
 }
 export default SearchForm;
-
 
 /*
   function mockQueryResult() {
