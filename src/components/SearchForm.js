@@ -187,8 +187,8 @@ function SearchForm(params) {
         method: "POST",
         body: json,
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
         },
       }
     )
