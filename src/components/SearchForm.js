@@ -36,14 +36,13 @@ function SearchForm(params) {
         </div>
         {inputFulltextList}
         <br />
-
         <div className="formMainRow">
           <label className="freieSucheLabel">Redner</label>
           <br />
           <input
             className="mainTextInput"
             type="text"
-            {...register("speaker0")}
+            {...register("speakerMain")}
           ></input>
           <input
             className="formEditButton"
@@ -52,17 +51,15 @@ function SearchForm(params) {
             onClick={addSpeakerFormRow}
           ></input>
         </div>
-
         {inputSpeakerList}
         <br />
-
         <div className="formMainRow">
           <label className="freieSucheLabel">Partei</label>
           <br />
           <input
             className="mainTextInput"
             type="text"
-            {...register("affiliation0")}
+            {...register("affiliationMain")}
           ></input>
           <input
             className="formEditButton"
@@ -85,11 +82,11 @@ function SearchForm(params) {
     let entries = [];
     let metaData = {};
     while (i < data.results.length) {
-      //metaData = getMetaData(data.results[i].docId);
+      metaData = getMetaData(data.results[i].doc_id);
       entries.push(
         addListElement(
           i,
-          data.results[i].doc_id,
+          metaData.title,
           metaData.speaker,
           metaData.affiliation,
           metaData.date,
@@ -103,23 +100,23 @@ function SearchForm(params) {
   }
 
   function getMetaData(uuid) {
-    const username = process.env.MONGO_INITDB_ROOT_USERNAME;
-    const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
+    //const username = process.env.MONGO_INITDB_ROOT_USERNAME;
+    //const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
     const url = process.env.MongoConnectionString;
+    const { MongoClient } = require("mongodb");
+    const client = new MongoClient(url);
 
-    var MongoClient = require("mongodb").MongoClient;
-    MongoClient.connect(url, function (err, db) {
+    client.connect(url, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("db");
+      var dbo = db.db("crawler");
       var query = { uuid: uuid };
-      //TODO add correct COLLECTION_NAME
       dbo
-        .collection("COLLECTION_NAME")
+        .collection("protocols")
         .find(query)
         .toArray(function (err, result) {
           if (err) throw err;
-          console.log(result);
           db.close();
+          return result;
         });
     });
   }
@@ -140,7 +137,7 @@ function SearchForm(params) {
 
   function buildJSON() {
     let additions = [];
-
+    
     for (let index = 0; index < inputFulltextList.length; index++) {
       let fulltextKey = "fulltext" + index;
       let operatorKey = "fulltextOperator" + index;
@@ -154,7 +151,13 @@ function SearchForm(params) {
     }
 
     let filter = [];
-
+    let speakerMain = {
+      criteria: "speakerMain",
+      value: getValues("speakerMain")
+    }
+    if(speakerMain.value !== ""){
+      filter.push(speakerMain);
+    }
     for (let index = 0; index < inputSpeakerList.length; index++) {
       let speakerKey = "speaker" + index;
       let oneFilter = {
@@ -165,7 +168,13 @@ function SearchForm(params) {
         filter.push(oneFilter);
       }
     }
-
+    let affiliationMain = {
+      criteria: "affiliationMain",
+      value: getValues("affiliationMain")
+    }
+    if(affiliationMain.value !== ""){
+      filter.push(affiliationMain)
+    }
     for (let index = 0; index < inputAffiliationList.length; index++) {
       let affiliationKey = "affiliation" + index;
       let oneFilter = {
@@ -188,6 +197,7 @@ function SearchForm(params) {
         filter: filter,
       },
     };
+    console.log(JSON.stringify(query));
     return JSON.stringify(query);
   }
 
