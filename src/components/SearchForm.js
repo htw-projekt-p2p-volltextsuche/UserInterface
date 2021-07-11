@@ -102,7 +102,9 @@ function SearchForm(params) {
   function getMetaData(uuid) {
     //const username = process.env.MONGO_INITDB_ROOT_USERNAME;
     //const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
-    const url = process.env.MongoConnectionString;
+    const url = process.env.REACT_APP_MONGO_CONNECTION_STRING;
+    console.log("Mongo DB connection url:")
+    console.log(url)
     const { MongoClient } = require("mongodb");
     const client = new MongoClient(url);
 
