@@ -6,8 +6,8 @@ function SearchForm(params) {
   const onSubmit = (data) => {
     //console.log(buildJSON(data))
     //mockQueryResult()
-    getMetaData("124124")
-    //sendQuery(buildJSON(data))
+    //getMetaData("124124")
+    sendQuery(buildJSON(data))
   }
   const [resultListEntries, setResultListEntries] = useState([])
   const [rowKey, setRowKey] = useState(0)

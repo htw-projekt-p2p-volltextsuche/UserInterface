@@ -34,20 +34,18 @@ createSpeech = (req, res) => {
 }
 
 getSpeechById = async (req, res) => {
-    return res.status(200).json({ success: true, data: {"id": "123123", "title":"someawesometitle", "speaker":"somenoncorruptspeaker", "affiliation":"gro0artige partei", "date": "20-04-1969"} })
-    // return res.status(200).json({response: "hello world"})
-    // await Speech.findOne({ _id: req.params.id }, (err, Speech) => {
-    //     if (err) {
-    //         return res.status(400).json({ success: false, error: err })
-    //     }
+    await Speech.findOne({ _id: req.params.id }, (err, Speech) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
 
-    //     if (!Speech) {
-    //         return res
-    //             .status(404)
-    //             .json({ success: false, error: `Speech not found` })
-    //     }
-    //     return res.status(200).json({ success: true, data: Speech })
-    // }).catch(err => console.log(err))
+        if (!Speech) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Speech not found` })
+        }
+        return res.status(200).json({ success: true, data: Speech })
+    }).catch(err => console.log(err))
 }
 
 module.exports = {
