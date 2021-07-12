@@ -1,0 +1,11 @@
+{
+  "short_name": "P2PVolltextsuche",
+  "name": "Peer-to-Peer Volltextsuche",
+  "icons": [
+    "htw_logo.jpg"
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
