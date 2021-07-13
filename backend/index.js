@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = require('./db')
-const speechRouter = require("./routes/speech-router")
+const protocolRouter = require("./routes/protocol-router")
 
 
 const app = express()
@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', speechRouter)
+app.use('/api', protocolRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

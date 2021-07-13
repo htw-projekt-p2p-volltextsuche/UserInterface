@@ -101,7 +101,7 @@ function SearchForm(params) {
 
   function getMetaData(uuid) {
     const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING
-    fetch(url +"/api/speech/"+ uuid, {
+    fetch(url +"/api/protocol?_id="+ uuid, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -144,7 +144,7 @@ function SearchForm(params) {
 
     let filter = []
     let speakerMain = {
-      criteria: "speakerMain",
+      criteria: "speaker",
       value: getValues("speakerMain"),
     }
     if (speakerMain.value !== "") {
@@ -161,7 +161,7 @@ function SearchForm(params) {
       }
     }
     let affiliationMain = {
-      criteria: "affiliationMain",
+      criteria: "affiliation",
       value: getValues("affiliationMain"),
     }
     if (affiliationMain.value !== "") {
