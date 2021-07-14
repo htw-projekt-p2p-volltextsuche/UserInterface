@@ -90,10 +90,10 @@ function SearchForm(params) {
     setResultListEntries((prevResultListEntries) =>
       prevResultListEntries.concat(
         addListElement(
-          metaData.title,
-          metaData.speaker,
-          metaData.affiliation,
-          metaData.date
+          metaData.Title,
+          metaData.Speaker,
+          metaData.Affiliation,
+          metaData.Date
         )
       )
     )
@@ -101,9 +101,10 @@ function SearchForm(params) {
 
   function getMetaData(uuid) {
     const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING
-    fetch(url +"/api/protocol?_id="+ uuid, {
+    fetch(url +"/api/protocol/"+ uuid, {
       method: "GET",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         Accept: "application/json",
       },
     })
