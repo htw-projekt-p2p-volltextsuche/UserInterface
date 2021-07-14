@@ -1,20 +1,26 @@
-const Protocol = require("../models/protocol-model")
-const MUUID = require("uuid-mongodb")
+//const Protocol = require("../models/protocol-model")
+const MongoClient = require("mongodb").MongoClient
+const url = process.env.REACT_APP_MONGO_CONNECTION_STRING
 
 getProtocolById = async (req, res) => {
-    console.log("request doc_id: " + req.params.id);
-    await Protocol.findOne({ _id: MUUID.from(req.params.id)}, (err, Protocol) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!Protocol) {
-            return res
-                .status(404)
-                .json({ success: false, error: err })
-        }
-        return res.status(200).json({ success: true, data: protocol })
-    }).catch(err => console.log(err))
+    MongoClient.connect(url, function (err, db) {
+        if(err) throw err
+        var dbo = db.db("crawler")
+        dbo.collection("protocols").findOne({_id: req.params.id}, function(err, result){
+            if (err) {
+                return res.status(400).json({ success: false, error: err })
+            }
+    
+            if (!result) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: `Protocol not found` })
+            }
+            return res.status(200).json({ success: true, data: result })
+        })
+        db.close()
+        
+    })
 }
 
 module.exports = {

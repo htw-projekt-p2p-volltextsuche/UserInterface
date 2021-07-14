@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const MUUID = require("uuid-mongodb")
+const db = require('../db')
+
 const Protocol = new Schema(
     {
-    _id: {type: 'object',
-    value: { type: 'Buffer' },
-    default: () => MUUID.v4(),
-      },
+    _id: {type: String},
     // Title of the protocol.
     Title: {type: String},
     
@@ -17,7 +15,7 @@ const Protocol = new Schema(
     Affiliation: {type: String},
 
     // Date of the protocol in the format dd.mm.yyyy
-    Date: {type: [String]},
+    Date: {type: Date},
 
     // Entire processed content of the protocol.
     Text: {type: String}
