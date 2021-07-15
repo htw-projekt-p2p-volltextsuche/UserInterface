@@ -153,12 +153,11 @@ async function fetchFromMongo(data) {
   }
 
   function sendQuery(json) {
-    fetch(/*
+    fetch(
       window.location.protocol +
         "//" +
         window.location.host +
-        ":8421/api/searches"*/
-        "http://172.17.0.1:8421/api/searches",
+        ":8421/api/searches",
       {
         method: "POST",
         body: json,
