@@ -5,7 +5,8 @@
 #ddddf3 lila
 #9999CC lila dunkel*/
 html {
-  font-family: "Trebuchet MS";
+  font-family: "HTWBerlin", Helvetica, sans-serif;
+  text-transform: capitalize;
   font-size: 18px;
 }
 body {
@@ -75,7 +76,7 @@ select:hover {
 
 .form {
   display: grid;
-  grid-template-columns: 100% ;
+  grid-template-columns: 100%;
   text-align: left;
   border-style: solid;
   border-width: 4px;
@@ -84,16 +85,16 @@ select:hover {
   margin: 10px;
 }
 
-.freieSucheLabel{
+.freieSucheLabel {
   width: 80%;
-    padding: 4px;
-    margin: 2px;
-    border: 3px solid #9999cc;
-    border-radius: 10px;
-    background-color: #ddddf3;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #9999cc;
+  border-radius: 10px;
+  background-color: #ddddf3;
 }
 
-.extraSucheLabel{
+.extraSucheLabel {
   width: 20%;
   font-family: "Trebuchet MS";
   font-size: 14px;
@@ -106,20 +107,20 @@ select:hover {
   background-color: #ddddf3;
 }
 
-.formMainRow{
+.formMainRow {
   display: grid;
   grid-template-columns: 30% 30% 30% 10%;
 }
-.formRow{
+.formRow {
   display: grid;
   grid-template-columns: 30% 30% 30% 10%;
 }
 
-.formEditButton{
+.formEditButton {
   font-size: 18px;
 }
 
-#formSubmit{
+#formSubmit {
   width: 25%;
   font-size: 18px;
 }
@@ -159,19 +160,38 @@ select:hover {
 }
 
 .listElement > div {
-  display: flex;
+  display: grid;
   margin: 5px;
   padding: 10px;
   text-align: left;
 }
 
+.innerListElement{
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
 .elementTitel {
   font-size: 20px;
   text-align: left;
+  margin-right: 2%;
 }
 
 .elementExtra {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   text-align: left;
+}
+
+.speechModalFooter {
+  font-size: small;
+  justify-content: left;
+  padding: 10%;
+}
+
+#speechModalTitle{
+  font-size: large;
+  font-weight: bold;
 }
 
 /* pagination styling*/
@@ -187,14 +207,16 @@ select:hover {
 }
 
 pagination a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
 
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 .pagination a {
@@ -205,7 +227,7 @@ pagination a.active {
   border-radius: 5px;
 }
 .pagination a {
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 .pagination a {
   border: 1px solid #ddd; /* Gray */
