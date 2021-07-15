@@ -6,10 +6,9 @@ function SearchForm(params) {
   const { register, unregister, handleSubmit, getValues } = useForm();
 
   const onSubmit = (data) => {
-    //console.log(buildJSON(data))
     //mockQueryResult()
-    // sendQuery(buildJSON(data));
-    mockResultList()
+    sendQuery(buildJSON(data));
+    //mockResultList()
   };
   const [resultListEntries, setResultListEntries] = useState([]);
 
@@ -83,34 +82,6 @@ function SearchForm(params) {
       {resultListEntries}
     </div>
   );
-
-
-  function mockResultList() {
-    const results = [
-      addListElement(
-        {
-          _id: "4e03801b-073a-47c0-bfd4-f19973ed8c27",
-          title: "Awesome Speech",
-          speaker: "Peter Lustig",
-          affiliation: "DIE LINKE",
-          date: "2021-04-23",
-          text: "Some stupid mock blahlbbljklfgjsdklfgjklfdjg...."
-        }),
-      addListElement(
-        {
-          _id: "5e03801b-073a-47c0-bfd4-f19973ed8c27",
-          title: "Another Speech",
-          speaker: "Another Speaker",
-          affiliation: "Another Affiliation",
-          date: "2021-04-23",
-          text: "Some more stupid mocking blahblub...."
-        }
-      )
-    ]
-    console.log(results)
-    setTotalResultSize(results.length)
-    setResultListEntries(results)
-  }
 
   function buildResultList(data) {
     var string = new TextDecoder().decode(data);
@@ -196,7 +167,7 @@ function SearchForm(params) {
       window.location.protocol +
       "//" +
       window.location.host +
-      ":8421/api/searches"/*"http://172.17.0.1:8421/api/searches"*/,
+      ":8421/api/searches",
       {
         method: "POST",
         body: json,
@@ -213,7 +184,7 @@ function SearchForm(params) {
 
   function getMetaData(uuid) {
     const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING;
-    return fetch(url /*"http://172.17.0.1:8081*/ + "/api/protocol/" + uuid, {
+    return fetch(url + "/api/protocol/" + uuid, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "no-cors",
@@ -268,9 +239,8 @@ function SearchForm(params) {
   }
 
   function addListElement(data) {
-    const title = (data.title.length > 250) ? data.title.substring(0, 250) + "..." : data.title
     return (
-      <ListElement key={data.doc_id} speaker={data.speaker} title={title} affiliation={data.affiliation} date={data.date} text={data.text} />
+      <ListElement key={data._id} speaker={data.speaker} title={data.title} affiliation={data.affiliation} date={data.date} text={data.text} />
     );
   }
 
@@ -340,7 +310,7 @@ function SearchForm(params) {
 }
 export default SearchForm;
 
-
+/*
 function mockQueryResult() {
   let data = {
 
@@ -353,3 +323,30 @@ function mockQueryResult() {
 
 }
 
+function mockResultList() {
+  const results = [
+    addListElement(
+      {
+        _id: "4e03801b-073a-47c0-bfd4-f19973ed8c27",
+        title: "Awesome Speech",
+        speaker: "Peter Lustig",
+        affiliation: "DIE LINKE",
+        date: "2021-04-23",
+        text: "Some stupid mock blahlbbljklfgjsdklfgjklfdjg...."
+      }),
+    addListElement(
+      {
+        _id: "5e03801b-073a-47c0-bfd4-f19973ed8c27",
+        title: "Another Speech",
+        speaker: "Another Speaker",
+        affiliation: "Another Affiliation",
+        date: "2021-04-23",
+        text: "Some more stupid mocking blahblub...."
+      }
+    )
+  ]
+  console.log(results)
+  setTotalResultSize(results.length)
+  setResultListEntries(results)
+}
+*/

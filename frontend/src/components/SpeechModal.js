@@ -8,14 +8,16 @@ import Button from 'react-bootstrap/Button';
 
 function SpeechModal(props) {
     return (
-        <Modal
+        <Modal 
             show={true}
             onHide={props.onClose}
+            fullscreen="xl-down"
+            size="xl"
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
         >
             <Modal.Header closeButton>
-                <Modal.Title id="speech-modal">
+                <Modal.Title id="speechModalTitle">
                     {props.title}
                 </Modal.Title>
             </Modal.Header>
