@@ -75,7 +75,7 @@ select:hover {
 
 .form {
   display: grid;
-  grid-template-columns: 100% ;
+  grid-template-columns: 100%;
   text-align: left;
   border-style: solid;
   border-width: 4px;
@@ -84,16 +84,16 @@ select:hover {
   margin: 10px;
 }
 
-.freieSucheLabel{
+.freieSucheLabel {
   width: 80%;
-    padding: 4px;
-    margin: 2px;
-    border: 3px solid #9999cc;
-    border-radius: 10px;
-    background-color: #ddddf3;
+  padding: 4px;
+  margin: 2px;
+  border: 3px solid #9999cc;
+  border-radius: 10px;
+  background-color: #ddddf3;
 }
 
-.extraSucheLabel{
+.extraSucheLabel {
   width: 20%;
   font-family: "Trebuchet MS";
   font-size: 14px;
@@ -106,20 +106,20 @@ select:hover {
   background-color: #ddddf3;
 }
 
-.formMainRow{
+.formMainRow {
   display: grid;
   grid-template-columns: 30% 30% 30% 10%;
 }
-.formRow{
+.formRow {
   display: grid;
   grid-template-columns: 30% 30% 30% 10%;
 }
 
-.formEditButton{
+.formEditButton {
   font-size: 18px;
 }
 
-#formSubmit{
+#formSubmit {
   width: 25%;
   font-size: 18px;
 }
@@ -174,6 +174,30 @@ select:hover {
   text-align: left;
 }
 
+.speechModal {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 30rem;
+  z-index: 10;
+  position: fixed;
+  top: 20vh;
+  left: calc(50% - 15rem);
+}
+.backdrop {
+  overflow-y: initial !important;
+  
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
 /* pagination styling*/
 .pagination {
   display: inline-block;
@@ -187,14 +211,16 @@ select:hover {
 }
 
 pagination a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
 
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 .pagination a {
@@ -205,7 +231,7 @@ pagination a.active {
   border-radius: 5px;
 }
 .pagination a {
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 .pagination a {
   border: 1px solid #ddd; /* Gray */
