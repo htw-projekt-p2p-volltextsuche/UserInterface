@@ -78,54 +78,12 @@ function SearchForm(params) {
 
   function buildResultList(data) {
     var string = new TextDecoder().decode(data)
-    data = JSON.parse(string)
-    let i = 0
-    while (i < data.results.length) {
-      getMetaData(data.results[i].doc_id)
-      i++
-    }
+    data = JSON.parse(string) 
+    fetchFromMongo(data).then(setResultListEntries)
   }
 
-  function addResultListItem(metaData) {
-    setResultListEntries((prevResultListEntries) =>
-      prevResultListEntries.concat(
-        addListElement(
-          metaData.Title,
-          metaData.Speaker,
-          metaData.Affiliation,
-          metaData.Date
-        )
-      )
-    )
-  }
-
-  function getMetaData(uuid) {
-    const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING
-    fetch(url +"/api/protocol/"+ uuid, {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Accept: "application/json",
-      },
-    })
-      .then((responseJson) => responseJson.body.getReader().read())
-      .then(({ _, value }) => new TextDecoder().decode(value))
-      .then((string) => JSON.parse(string))
-      .then((data) => addResultListItem(data.data))
-      .catch((error) => console.log(error))
-  }
-
-  function addListElement(title, speaker, affiliation, date) {
-    return (
-      <div key={resultListEntries.length} className="listElement">
-        <div className="elementTitel">{title}</div>
-        <div className="elementExtra">
-          {speaker}
-          {affiliation}
-          {date}
-        </div>
-      </div>
-    )
+async function fetchFromMongo(data) {
+  return await Promise.all(data.results.map(metaData => getMetaData(metaData.doc_id)))
   }
 
   function buildJSON() {
@@ -195,11 +153,12 @@ function SearchForm(params) {
   }
 
   function sendQuery(json) {
-    fetch(
+    fetch(/*
       window.location.protocol +
         "//" +
         window.location.host +
-        ":8421/api/searches",
+        ":8421/api/searches"*/
+        "http://172.17.0.1:8421/api/searches",
       {
         method: "POST",
         body: json,
@@ -213,6 +172,24 @@ function SearchForm(params) {
       .then(({ _, value }) => buildResultList(value))
       .catch((error) => console.log(error))
   }
+
+
+  function getMetaData(uuid) {
+    const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING
+    return fetch("http://172.17.0.1:8081" +"/api/protocol/"+ uuid, {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "no-cors",
+        "Accept": "application/json",
+      },
+    })
+      .then((responseJson) => responseJson.body.getReader().read())
+      .then(({ _, value }) => new TextDecoder().decode(value))
+      .then((string) => JSON.parse(string))
+      .then((data) => addListElement(data.data))
+      .catch((error) => console.log(error))
+  }
+
 
   function addFulltextFormRow() {
     setInputFulltextList((prevInputFulltextList) => {
@@ -252,6 +229,24 @@ function SearchForm(params) {
         (formRow) => formRow.key !== key.toString()
       )
     })
+  }
+
+  function addListElement(data) {
+    var title = "" 
+    if(data.title.length > 250)
+      title = data.title.substring(0,250)+"..."
+    else
+      title = data.title
+      return (
+      <div key={data._id} className="listElement">
+        <div className="elementTitel">{title}</div>
+        <div className="elementExtra">
+          {data.speaker}
+          {data.affiliation}
+          {data.date}
+        </div>
+      </div>
+    )
   }
 
   function addFormRow(key, type) {
