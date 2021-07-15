@@ -230,10 +230,8 @@ function SearchForm(params) {
   }
 
   function addListElement(data) {
-    var title = "";
-    if (data.title.length > 250) title = data.title.substring(0, 250) + "...";
-    else title = data.title;
-    return (
+    const title = (data.title.length > 250) ? data.title.substring(0, 250) + "..." : data.title
+        return (
       <ListElement key={data.doc_id} speaker={data.speaker} title={title} affiliation={data.affiliation} date={data.date} text={data.text}/>
     );
   }
