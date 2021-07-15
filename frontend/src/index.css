@@ -5,7 +5,8 @@
 #ddddf3 lila
 #9999CC lila dunkel*/
 html {
-  font-family: "Trebuchet MS";
+  font-family: "HTWBerlin", Helvetica, sans-serif;
+  text-transform: capitalize;
   font-size: 18px;
 }
 body {
