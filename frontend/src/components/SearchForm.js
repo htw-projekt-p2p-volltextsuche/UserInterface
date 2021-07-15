@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ListElement from "./ListElement"
+
 function SearchForm(params) {
   const { register, unregister, handleSubmit, getValues } = useForm();
 
   const onSubmit = (data) => {
     //console.log(buildJSON(data))
     //mockQueryResult()
-    sendQuery(buildJSON(data));
+    // sendQuery(buildJSON(data));
+    mockResultList()
   };
   const [resultListEntries, setResultListEntries] = useState([]);
 
@@ -26,13 +28,13 @@ function SearchForm(params) {
             className="mainTextInput"
             type="text"
             {...register("mainTerm")}
-          ></input>
+          />
           <input
             className="formEditButton"
             type="button"
             value="+"
             onClick={addFulltextFormRow}
-          ></input>
+          />
         </div>
         {inputFulltextList}
         <br />
@@ -43,13 +45,13 @@ function SearchForm(params) {
             className="mainTextInput"
             type="text"
             {...register("speakerMain")}
-          ></input>
+          />
           <input
             className="formEditButton"
             type="button"
             value="+"
             onClick={addSpeakerFormRow}
-          ></input>
+          />
         </div>
         {inputSpeakerList}
         <br />
@@ -60,20 +62,47 @@ function SearchForm(params) {
             className="mainTextInput"
             type="text"
             {...register("affiliationMain")}
-          ></input>
+          />
           <input
             className="formEditButton"
             type="button"
             value="+"
             onClick={addAffiliationFormRow}
-          ></input>
+          />
         </div>
         {inputAffiliationList}
-        <input id="formSubmit" type="submit"></input>
+        <input id="formSubmit" type="submit"/>
       </form>
       {resultListEntries}
     </div>
   );
+
+
+  function mockResultList() {
+    const results = [
+      addListElement(
+        {
+          _id: "4e03801b-073a-47c0-bfd4-f19973ed8c27",
+          title: "Awesome Speech",
+          speaker: "Peter Lustig",
+          affiliation: "DIE LINKE",
+          date: "2021-04-23",
+          text: "Some stupid mock blahlbbljklfgjsdklfgjklfdjg...."
+        }),
+      addListElement(
+        {
+          _id: "5e03801b-073a-47c0-bfd4-f19973ed8c27",
+          title: "Another Speech",
+          speaker: "Another Speaker",
+          affiliation: "Another Affiliation",
+          date: "2021-04-23",
+          text: "Some more stupid mocking blahblub...."
+        }
+      )
+    ]
+    console.log(results)
+    setResultListEntries(results)
+  }  
 
   function buildResultList(data) {
     var string = new TextDecoder().decode(data);
