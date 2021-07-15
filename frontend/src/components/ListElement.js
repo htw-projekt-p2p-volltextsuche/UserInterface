@@ -1,13 +1,30 @@
+import SpeechModal from "./SpeechModal"
+import Backdrop from "./Backdrop"
+import { useState } from "react";
 function ListElement(props) {
-    return(<div key={data._id} className="listElement" >
-    <div className="elementTitel">{title}</div>
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    function showSpeechModal(){
+        setModalIsOpen(true);
+        console.log("showModal: " + modalIsOpen)
+      }
+    
+      function closeSpeechModal() {
+        setModalIsOpen(false);
+        console.log("showModal: " + modalIsOpen)
+      }
+
+    return(<div key={props._id} className="listElement" >
+    <div className="elementTitel">{props.title}</div>
     <div className="elementExtra">
-      {data.speaker}
-      {data.affiliation}
-      {data.date}
+      {props.speaker}
+      {props.affiliation}
+      {props.date}
     </div>
     <button onClick={showSpeechModal}>Show Speech</button>
-    {modalIsOpen ? <SpeechModal onClick={closeSpeechModal} text={data.text}/> : null}
+    {modalIsOpen ? <SpeechModal onClick={closeSpeechModal} text={props.text}/> : null}
     {modalIsOpen ? <Backdrop onClick={closeSpeechModal}/> : null}
   </div>)
 }
+export default ListElement;

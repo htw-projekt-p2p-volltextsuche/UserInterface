@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import SpeechModal from "./SpeechModal";
+import ListElement from "./ListElement"
 import Backdrop from "./Backdrop";
 function SearchForm(params) {
   const { register, unregister, handleSubmit, getValues } = useForm();
@@ -8,10 +8,8 @@ function SearchForm(params) {
   const onSubmit = (data) => {
     //console.log(buildJSON(data))
     //mockQueryResult()
-    getMetaData("")
-    //sendQuery(buildJSON(data));
+    sendQuery(buildJSON(data));
   };
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [resultListEntries, setResultListEntries] = useState([]);
 
   const [rowKey, setRowKey] = useState(0);
@@ -178,7 +176,7 @@ function SearchForm(params) {
 
   function getMetaData(uuid) {
     const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING;
-    return fetch(url /*"http://172.17.0.1:8081/api/protocol/"*/ + uuid, {
+    return fetch(url /*"http://172.17.0.1:8081*/+ "/api/protocol/"+ uuid, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "no-cors",
@@ -190,16 +188,6 @@ function SearchForm(params) {
       .then((string) => JSON.parse(string))
       .then((data) => addListElement(data.data))
       .catch((error) => console.log(error));
-  }
-
-  function showSpeechModal(){
-    setModalIsOpen(true);
-    console.log("showModal: " + modalIsOpen)
-  }
-
-  function closeSpeechModal() {
-    setModalIsOpen(false);
-    console.log("showModal: " + modalIsOpen)
   }
 
   function addFulltextFormRow() {
@@ -246,8 +234,8 @@ function SearchForm(params) {
     var title = "";
     if (data.title.length > 250) title = data.title.substring(0, 250) + "...";
     else title = data.title;
-    return (<ListElement />
-      
+    return (
+      <ListElement key={data.doc_id} speaker={data.speaker} title={title} affiliation={data.affiliation} date={data.date} text={data.text}/>
     );
   }
 
