@@ -175,7 +175,7 @@ async function fetchFromMongo(data) {
 
   function getMetaData(uuid) {
     const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING
-    return fetch("http://172.17.0.1:8081" +"/api/protocol/"+ uuid, {
+    return fetch(url +"/api/protocol/"+ uuid, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "no-cors",
