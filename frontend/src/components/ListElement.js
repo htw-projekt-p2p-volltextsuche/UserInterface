@@ -15,14 +15,13 @@ function ListElement(props) {
         console.log("showModal: " + modalIsOpen)
       }
 
-    return(<div key={props._id} className="listElement" >
+    return(<div key={props._id} className="listElement" onClick={showSpeechModal}>
     <div className="elementTitel">{props.title}</div>
     <div className="elementExtra">
       {props.speaker}
       {props.affiliation}
       {props.date}
     </div>
-    <button onClick={showSpeechModal}>Show Speech</button>
     {modalIsOpen ? <SpeechModal onClick={closeSpeechModal} text={props.text}/> : null}
     {modalIsOpen ? <Backdrop onClick={closeSpeechModal}/> : null}
   </div>)

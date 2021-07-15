@@ -5,7 +5,7 @@ function SpeechModal(props){
 
     return <div className="speechModal">
         <p>{props.text}</p>
-        <button onClick={closeHandler}>Schließen</button>
+        <input type="button" onClick={closeHandler}>Schließen</input>
     </div>
 }
 export default SpeechModal
