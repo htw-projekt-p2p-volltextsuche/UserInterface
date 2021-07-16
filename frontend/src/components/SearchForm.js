@@ -183,7 +183,9 @@ function SearchForm(params) {
   }
 
   function getMetaData(uuid) {
-    const url = process.env.REACT_APP_MONGO_BACKEND_CONNECTION_STRING;
+    const url = "http://141.45.146.106:8081"
+    console.log("mongo URL")
+    console.log(url)
     return fetch(url + "/api/protocol/" + uuid, {
       method: "GET",
       headers: {
