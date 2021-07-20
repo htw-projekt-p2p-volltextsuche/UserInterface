@@ -1,70 +1,11 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# User Interface
+## Problemstellung
+Das UI soll die Eingabe von präzisen Suchanfragen zu Bundestagsreden ermöglichen, die Suchergebnisse mit ihren Metadaten anzeigen und beim Klick auf eine einzelne Rede den vollen Text anzeigen. Hierbei wurden keine Vorgaben gegeben wie genau das Ganze technisch umgesetzt werden soll.
+## Lösungsansatz
+Die Entscheidung der Oberflächenart fiel auf eine Browser-Website. Als Hauptprogrammiersprache wurde Javascript gewählt und das Framework React verwendet. Dieses basiert darauf, die Website in Unterkomponenten zu zerlegen und diese gegebenenfalls wiederverwendbar zu machen. Zusätzlich wurde CSS für das Styling der Komponenten benutzt. Ein dynamisches, erweiterbares Formular soll möglichst genaue Suchanfragen ermöglichen. Ursprünglich sollten neue Formularreihen hinzugefügt werden bei denen man einen logischen Operator sowie Typ (Freie Suche, Partei, Redner) frei auswählen kann. Aus diesem Formular wird eine Query erstellt die dann an die Volltextsuche geschickt wird, diese gibt unter anderem Dokumenten-Ids zurück anhand derer aus der MongoDB dann die Reden mit Metadaten angefragt werden können. Die Anzeige der Ergebnisse wird als Ergebnisliste umgesetzt, bei Klick auf einen Listeneintrag wird die volle Rede angezeigt.
+## Probleme
+Das Design des Suchformulars musste abgeändert werden, da aufgrund des Aufbaus nicht genau klar war, in welcher Reihenfolge beziehungsweise mit welcher Priorität einzelne Formularreihen ausgewertet werden. Also wurde es in drei Hauptbereiche eingeteilt: Freie Suche bei der logische Operatoren immer noch frei wählbar sind und Partei und Redner bei denen das nicht mehr möglich ist, da diese in der Volltextsuche nach der freien Suche als Filter angewendet werden und somit die Auswahl eines Operator irreführend wäre.
+Im Laufe des Projekts wurde klar, dass außerdem ein Backend für den Zugriff auf die MongoDB nötig ist, da ein direkter Zugriff aus dem UI nicht möglich ist. Es wurde als simples Node.js Projekt aufgesetzt, das eine GET-Request mit Dokumenten-Id als Übergabeparameter beantworten kann.
+Anfangs war eine Sortierung der Suchergebnisse in Diskussion, diese wurde aber bewusst weggelassen, da die Suchergebnisse standardmäßig nach Relevanz sortiert von der Volltextsuche zurückgegeben werden und damit zum Beispiel ein alphabetisches Sortieren nach Partei obsolet erschien oder eine Sortierung nach Titel der Reden, da diese oft sehr komplex sind aber fast ausschließlich mit "Tagesordnungspunk" beginnen und damit keinen Mehrwert bieten.  
+## Schlussbetrachtung
+Die Anforderungen wurden weitestgehend erfüllt, es gab Features die aus Zeitmangel nicht mehr angeboten werden konnten, wie zum Beispiel Paginierung und das Anzeigen von sinnvollen Textausschnitten in der Suchergebnisliste.
