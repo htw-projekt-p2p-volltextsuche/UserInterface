@@ -9,3 +9,11 @@ Im Laufe des Projekts wurde klar, dass außerdem ein Backend für den Zugriff au
 Anfangs war eine Sortierung der Suchergebnisse in Diskussion, diese wurde aber bewusst weggelassen, da die Suchergebnisse standardmäßig nach Relevanz sortiert von der Volltextsuche zurückgegeben werden. Eine alphabetisches Sortieren nach Partei oder Titel der Reden erschien obsolet. Durch die Komplexität der Titel wird bei einer alphabetischen Sortierung kein Mehrwert geboten.<br>
 ## Schlussbetrachtung
 Die Anforderungen wurden weitestgehend erfüllt. Aus Zeitmangel wurden einige Features nicht mehr angeboten, wie zum Beispiel Paginierung und das Anzeigen von sinnvollen Textausschnitten in der Suchergebnisliste.
+## Verwendung der Software
+Für volle Funktionalität muss das User Interface über das [Ops](https://github.com/htw-projekt-p2p-volltextsuche/ops) gestartet werden. 
+Für die Nutzung des User Interface benötigt man [Node.js](https://nodejs.org/en/).
+Das User Interface ist intern in Frontend und Backend aufgeteilt, diese müssen wenn man sie lokal und alleinstehend ausführen will seperat gestartet werden.
+Das Frontend wurde mit [Create-React-App](https://github.com/facebook/create-react-app) initialisiert und lässt sich z.B. mit dem Befehl <code>npm start</code> im "frontend" Ordner starten.
+Das Backend ist eine simple Node.js Anwendung das sich mit dem Befehl <code>node index.js</code> im "backend" Ordner, starten lässt.
+Es stellt einen Endpunkt für einen GET-Request bereit, dieser kann folgendermaßen <code>http://{hostadress}:{hostport}/api/protocol/doc_id</code> erreicht werden und gibt das Protokoll mit der passenden doc_id zurück, falls dieses gefunden wurde.
+
